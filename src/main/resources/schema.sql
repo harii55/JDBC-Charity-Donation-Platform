@@ -25,3 +25,17 @@ CREATE TABLE IF NOT EXISTS Charity (
                          is_active BOOLEAN DEFAULT TRUE,
                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS Campaign (
+                                        campaign_id INT AUTO_INCREMENT PRIMARY KEY,
+                                        charity_id INT,
+                                        title TEXT,
+                                        category TEXT,
+                                        description TEXT,
+                                        rec_url TEXT,
+                                        ack_url TEXT,
+                                        is_active BOOLEAN DEFAULT TRUE,
+                                        start_date DATE,
+                                        end_date DATE,
+                                        FOREIGN KEY (charity_id) REFERENCES Charity(charity_id)
+    );
