@@ -3,6 +3,7 @@ package main.java.com.charityapp.service;
 import main.java.com.charityapp.dao.DonorDAO;
 import main.java.com.charityapp.dao.DonorDAOImpl;
 import main.java.com.charityapp.dto.DonorDTO;
+import main.java.com.charityapp.mapper.CharityMapper;
 import main.java.com.charityapp.mapper.DonorMapper;
 import main.java.com.charityapp.model.Donor;
 
@@ -15,8 +16,8 @@ public class DonorService {
         donorDAO = new DonorDAOImpl();
     }
 
-    public boolean addDonor(Donor d) throws SQLException {
-        return donorDAO.addDonor(d);
+    public boolean addDonor(DonorDTO dto) throws SQLException {
+        return donorDAO.addDonor(DonorMapper.toEntity(dto,dto.getPassword()));
     }
 
     public DonorDTO getDonorById(int donorId) throws SQLException {
@@ -46,13 +47,13 @@ public class DonorService {
         return null;
     }
 
-    public boolean updateDonor(DonorDTO d) throws SQLException {
+    public boolean updateDonor(DonorDTO dto) throws SQLException {
         try {
             // Fetch existing donor to preserve password & createdAt
-            Donor existing = donorDAO.getDonorById(d.getDonorId()); //fetching the existing one
+            Donor existing = donorDAO.getDonorById(dto.getDonorId()); //fetching the existing one
             if (existing == null) return false;
 
-            Donor updated = DonorMapper.toEntity(d, existing.getPassword()); //updated is passed through params, converting it to model-entity
+            Donor updated = DonorMapper.toEntity(dto, existing.getPassword()); //updated is passed through params, converting it to model-entity
 
             return donorDAO.updateDonor(updated);
         } catch (Exception e) {

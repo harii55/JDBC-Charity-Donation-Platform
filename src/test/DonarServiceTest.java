@@ -1,25 +1,24 @@
-package main.java.com.charityapp;
+package test;
 
 import main.java.com.charityapp.dto.DonorDTO;
 import main.java.com.charityapp.enums.Gender;
-import main.java.com.charityapp.model.Donor;
 import main.java.com.charityapp.service.DonorService;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 
-    public class test {
+    public class DonarServiceTest {
 
         public static void main(String[] args) {
             DonorService donorService = new DonorService();
 
             try {
                 // Step 1: Add a new donor (optional if already present)
-                Donor newDonor = new Donor(
+                DonorDTO newDonor = new DonorDTO(
                         0, // Let DB auto-increment
-                        "Test User5",
+                        "Test User121",
                         "testuser@example.com",
-                        "securePassword12893",
+                        "secured12893",
                         "Mumbai",
                         "Maharashtra",
                         "India",
