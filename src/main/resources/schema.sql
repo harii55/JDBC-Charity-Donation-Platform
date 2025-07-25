@@ -77,3 +77,22 @@ CREATE TABLE IF NOT EXISTS FundraiserTransactions (
     FOREIGN KEY (donor_id) REFERENCES Donor(id),
     FOREIGN KEY (fcampaign_id) REFERENCES FundraiserCampaign(fcampaign_id)
 );
+
+CREATE TABLE IF NOT EXISTS RecurringDonation (
+    recurring_donation_id INT AUTO_INCREMENT PRIMARY KEY,
+    donor_id INT NOT NULL,
+    entity_type VARCHAR(20) NOT NULL,
+    entity_id INT NOT NULL,
+    charity_id INT NOT NULL,
+    recurring_rate VARCHAR(20) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    last_installment DATE,
+    next_installment DATE,
+    start_date DATE NOT NULL,
+    end_date DATE,
+    is_active BOOLEAN DEFAULT TRUE,
+    primary_payment_method_id INT,
+
+    FOREIGN KEY (donor_id) REFERENCES Donor(id),
+    FOREIGN KEY (charity_id) REFERENCES Charity(charity_id)
+    );
