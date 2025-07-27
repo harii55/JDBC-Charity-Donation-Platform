@@ -1,0 +1,4 @@
+package main.java.com.charityapp.dao;
+
+public class PaymentMethodDAOImpl {
+}
