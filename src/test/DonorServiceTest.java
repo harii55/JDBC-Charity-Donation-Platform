@@ -1,13 +1,13 @@
 package test;
 
 import main.java.com.charityapp.dto.DonorDTO;
-import main.java.com.charityapp.enums.Gender;
+import main.java.com.charityapp.enums.GenderType;
 import main.java.com.charityapp.service.DonorService;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 
-    public class DonarServiceTest {
+    public class DonorServiceTest {
 
         public static void main(String[] args) {
             DonorService donorService = new DonorService();
@@ -16,14 +16,14 @@ import java.time.Instant;
                 // Step 1: Add a new donor (optional if already present)
                 DonorDTO newDonor = new DonorDTO(
                         0, // Let DB auto-increment
-                        "Test User121",
+                        "Test User2",
                         "testuser@example.com",
                         "secured12893",
                         "Mumbai",
                         "Maharashtra",
                         "India",
                         25,
-                        Gender.FEMALE,
+                        GenderType.FEMALE,
                         "5-10LPA",
                         Timestamp.from(Instant.now())
                 );
@@ -33,7 +33,7 @@ import java.time.Instant;
                 System.out.println(newDonor.getPassword());
 
                 // Step 2: Fetch by email
-                DonorDTO dto = donorService.getDonarByEmail("testuser@example.com");
+                DonorDTO dto = donorService.getDonorByEmail("testuser@example.com");
                 if (dto != null) {
                     System.out.println("🎯 Donor found: " + dto.getName() + " from " + dto.getCity());
                 } else {
@@ -53,7 +53,7 @@ import java.time.Instant;
                 System.out.println(updated ? "✅ Donor updated." : "❌ Donor update failed.");
 
                 // Step 4: Fetch again to verify update
-                DonorDTO updatedDTO = donorService.getDonarByEmail("testuser@example.com");
+                DonorDTO updatedDTO = donorService.getDonorByEmail("testuser@example.com");
                 if (updatedDTO != null) {
                     System.out.println("✅ Updated Info:");
                     System.out.println("Name: " + updatedDTO.getName());

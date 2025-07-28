@@ -13,7 +13,7 @@ public class CampaignServiceTest {
         try {
             // ✅ 1. Add a new campaign
             CampaignDTO newCampaign = new CampaignDTO();
-            newCampaign.setCharityId(101); // make sure this ID exists in DB
+            newCampaign.setCharityId(1); // make sure this ID exists in DB
             newCampaign.setTitle("Tree Plantation Drive");
             newCampaign.setCategory("Environment");
             newCampaign.setDescription("Planting trees in urban areas");

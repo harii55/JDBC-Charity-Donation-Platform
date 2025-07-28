@@ -13,7 +13,7 @@ public class FundraiserServiceTest {
         try {
             // ✅ 1. Add new fundraiser campaign
             FundraiserCampaignDTO newCampaign = new FundraiserCampaignDTO();
-            newCampaign.setCharityId(101); // ⚠️ Make sure this ID exists in your DB
+            newCampaign.setCharityId(1); // ⚠️ Make sure this ID exists in your DB
             newCampaign.setTitle("Monsoon Relief Fund");
             newCampaign.setCategory("Disaster Relief");
             newCampaign.setGoal(100000);

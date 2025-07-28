@@ -5,16 +5,23 @@ import main.java.com.charityapp.dao.CampaignTransactionDAOImpl;
 import main.java.com.charityapp.dto.CampaignTransactionDTO;
 import main.java.com.charityapp.mapper.CampaignTransactionMapper;
 import main.java.com.charityapp.model.CampaignTransaction;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CampaignTransactionService {
     private CampaignTransactionDAO transactionDAO = new CampaignTransactionDAOImpl();
+    private DonorDonationSummaryService donationSummaryService = new DonorDonationSummaryService();
+
 
     public boolean makeCampaignDonation(CampaignTransactionDTO dto) throws SQLException {
-        return transactionDAO.makeCampaignDonation(CampaignTransactionMapper.toEntity(dto));
+        boolean isSuccess = transactionDAO.makeCampaignDonation(CampaignTransactionMapper.toEntity(dto));
+        if (isSuccess) {
+            donationSummaryService.updateDonorSummary(dto.getDonorId(), "CAMPAIGNS" , dto.getAmount());
+            return true;
+
+        }
+        return false;
     }
 
     public List<CampaignTransactionDTO> getTransactionsByCampaign(int campaignId) throws SQLException {

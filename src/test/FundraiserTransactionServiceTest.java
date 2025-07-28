@@ -4,19 +4,20 @@ import main.java.com.charityapp.dto.FundraiserTransactionDTO;
 import main.java.com.charityapp.service.FundraiserTransactionService;
 
 import java.math.BigDecimal;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
 public class FundraiserTransactionServiceTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FundraiserTransactionService service = new FundraiserTransactionService();
 
         try {
             // ✅ 1. Make a donation
             FundraiserTransactionDTO donation = new FundraiserTransactionDTO();
             donation.setDonorId(1); // must exist
-            donation.setFcampaignId(1); // must exist
-            donation.setAmount(new BigDecimal("1000.00"));
+            donation.setFcampaignId(2); // must exist
+            donation.setAmount(new BigDecimal("80000.00"));
             donation.setTimestamp(new Timestamp(System.currentTimeMillis()));
             donation.setReceiptStatus("PENDING");
 

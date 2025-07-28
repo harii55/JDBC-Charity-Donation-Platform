@@ -34,7 +34,7 @@ public class DonorService {
         return null;
     }
 
-    public DonorDTO getDonarByEmail(String email) throws SQLException {
+    public DonorDTO getDonorByEmail(String email) throws SQLException {
         Donor donor = donorDAO.getDonorByEmail(email);
         try {
             if (donor != null) {

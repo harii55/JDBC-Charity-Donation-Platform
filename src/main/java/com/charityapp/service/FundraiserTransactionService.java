@@ -11,11 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FundraiserTransactionService {
-    private FundraiserTransactionDAO transactionDAO = new FundraiserTransactionDAOImpl();
+    private FundraiserTransactionDAO transactionDAO;
 
-    public boolean makeFundraiserDonation(FundraiserTransactionDTO dto) throws SQLException {
-        return transactionDAO.makeFundraiserDonation(FundraiserTransactionMapper.toEntity(dto));
+    private FundraiserSummaryService fundraiserSummaryService;
+    private DonorDonationSummaryService donorDonationSummaryService;
+    public FundraiserTransactionService() throws Exception {
+        this.fundraiserSummaryService = new FundraiserSummaryService();
+        this.transactionDAO = new FundraiserTransactionDAOImpl();
+        this.donorDonationSummaryService = new DonorDonationSummaryService();
     }
+
+    public boolean makeFundraiserDonation(FundraiserTransactionDTO dto) throws Exception {
+       boolean isSuccess = transactionDAO.makeFundraiserDonation(FundraiserTransactionMapper.toEntity(dto));
+       if(isSuccess){
+           fundraiserSummaryService.updateSummary(dto.getFcampaignId(),dto.getAmount());
+           donorDonationSummaryService.updateDonorSummary(dto.getDonorId(), "FUNDRAISER" , dto.getAmount());
+
+       }
+       return isSuccess;
+    }
+
 
     public List<FundraiserTransactionDTO> getTransactionsByFundraiser(int fundraiserId) throws SQLException {
         List<FundraiserTransaction> list = transactionDAO.getTransactionsByFundraiser(fundraiserId);

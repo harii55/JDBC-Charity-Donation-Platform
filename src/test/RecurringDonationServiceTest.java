@@ -16,8 +16,8 @@ public class RecurringDonationServiceTest {
             RecurringDonationDTO newDonation = new RecurringDonationDTO();
             newDonation.setDonorId(1); // ⚠️ Must exist in DB
             newDonation.setEntityType("CAMPAIGN");
-            newDonation.setEntityId(1001); // ⚠️ Ensure this exists or is optional
-            newDonation.setCharityId(101); // ⚠️ Must exist
+            newDonation.setEntityId(1); // ⚠️ Ensure this exists or is optional
+            newDonation.setCharityId(1); // ⚠️ Must exist
             newDonation.setRecurringRate("MONTHLY");
             newDonation.setAmount(new BigDecimal("500.00"));
             newDonation.setNextInstallment(Date.valueOf("2025-08-01"));
@@ -53,7 +53,7 @@ public class RecurringDonationServiceTest {
 
             // ✅ 5. Get all recurring donations by charity
             List<RecurringDonationDTO> charityDonations = service.getAllRecurringDonationsByCharityId(101);
-            System.out.println("Charity 101 has " + charityDonations.size() + " recurring donations.");
+            System.out.println("Charity 1 has " + charityDonations.size() + " recurring donations.");
             for (RecurringDonationDTO r : charityDonations) {
                 System.out.println(" - Donor ID: " + r.getDonorId() + " | Amount: ₹" + r.getAmount());
             }

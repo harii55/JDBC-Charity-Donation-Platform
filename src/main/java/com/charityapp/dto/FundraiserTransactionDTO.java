@@ -1,5 +1,6 @@
 package main.java.com.charityapp.dto;
 import java.math.BigDecimal;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class FundraiserTransactionDTO {

@@ -1,7 +1,7 @@
 package main.java.com.charityapp.dao;
 
 import main.java.com.charityapp.db.dbUtil;
-import main.java.com.charityapp.enums.Gender;
+import main.java.com.charityapp.enums.GenderType;
 import main.java.com.charityapp.model.Donor;
 
 import java.sql.Connection;
@@ -13,10 +13,10 @@ public class DonorDAOImpl implements DonorDAO {
 
 
     public boolean addDonor(Donor d) throws SQLException {
-        String insertDonarSql = "INSERT INTO donor (name, email, password, city, state, country, age, gender, income_range,created_at) VALUES (?,?,?,?, ?, ?, ?, ?, ?, ?)";
+        String insertDonorSql = "INSERT INTO donor (name, email, password, city, state, country, age, gender, income_range,created_at) VALUES (?,?,?,?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(insertDonarSql)) {
+             PreparedStatement ps = conn.prepareStatement(insertDonorSql)) {
             ps.setString(1, d.getName());
             ps.setString(2, d.getEmail());
             ps.setString(3, d.getPassword());
@@ -50,7 +50,7 @@ public class DonorDAOImpl implements DonorDAO {
                 d.setState(rs.getString("state"));
                 d.setCountry(rs.getString("country"));
                 d.setAge(rs.getInt("age"));
-                d.setGender(Gender.valueOf(rs.getString("gender").toUpperCase()));
+                d.setGender(GenderType.valueOf(rs.getString("gender").toUpperCase()));
                 d.setIncomeRange(rs.getString("income_range"));
                 d.setCreatedAt(rs.getTimestamp("created_at"));
                 return d;
@@ -74,7 +74,7 @@ public class DonorDAOImpl implements DonorDAO {
                 d.setState(rs.getString("state"));
                 d.setCountry(rs.getString("country"));
                 d.setAge(rs.getInt("age"));
-                d.setGender(Gender.valueOf(rs.getString("gender").toUpperCase()));
+                d.setGender(GenderType.valueOf(rs.getString("gender").toUpperCase()));
                 d.setIncomeRange(rs.getString("income_range"));
                 d.setCreatedAt(rs.getTimestamp("created_at"));
 
@@ -87,7 +87,7 @@ public class DonorDAOImpl implements DonorDAO {
 
 
     public boolean updateDonor(Donor d) throws SQLException {
-        //The donardto will be updated one with old-same donar id
+        //The Donordto will be updated one with old-same Donor id
 
             String sql = "UPDATE donor SET name = ?, email = ?, password = ?, city = ?, state = ?, " +
                     "country = ?, age = ?, gender = ?, income_range = ? WHERE id = ?";

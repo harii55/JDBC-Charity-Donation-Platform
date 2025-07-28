@@ -29,7 +29,7 @@ public class CharityServiceTest {
             System.out.println("Add charity: " + (added ? "Success" : "Failed"));
 
             // ✅ 2. Get by ID
-            CharityDTO fetched = charityService.getCharityById(101);
+            CharityDTO fetched = charityService.getCharityById(1);
             if (fetched != null) {
                 System.out.println("Fetched by ID: " + fetched.getName() + ", Email: " + fetched.getEmail());
             }

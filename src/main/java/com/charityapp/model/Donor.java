@@ -1,6 +1,6 @@
 package main.java.com.charityapp.model;
 
-import main.java.com.charityapp.enums.Gender;
+import main.java.com.charityapp.enums.GenderType;
 
 import java.sql.Timestamp;
 
@@ -13,11 +13,11 @@ public class Donor {
     private String state;
     private String country;
     private int age;
-    private Gender gender;
+    private GenderType gender;
     private String incomeRange;
     private Timestamp createdAt;
 
-    public Donor(int donorId, String name, String email, String password, String city, String state, String country, int age, Gender gender, String incomeRange, Timestamp createdAt) {
+    public Donor(int donorId, String name, String email, String password, String city, String state, String country, int age, GenderType gender, String incomeRange, Timestamp createdAt) {
         this.donorId = donorId;
         this.name = name;
         this.email = email;
@@ -96,11 +96,11 @@ public class Donor {
         this.age = age;
     }
 
-    public Gender getGender() {
+    public GenderType getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(GenderType gender) {
         this.gender = gender;
     }
 

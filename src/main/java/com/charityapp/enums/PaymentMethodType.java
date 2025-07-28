@@ -1,6 +1,6 @@
 package main.java.com.charityapp.enums;
 
-public enum PaymentMethod {
+public enum PaymentMethodType {
     CARD,
     NETBANKING,
     UPI,
