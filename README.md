@@ -121,8 +121,6 @@ The application uses the following main entities:
 
 The project includes comprehensive unit tests for all services:
 
-```bash
-
 ### Test Coverage
 
 - **Service Layer Tests**: All business logic services
@@ -139,6 +137,7 @@ db.url=jdbc:mysql://your-database-host:3306/charityDb
 db.username=your_username
 db.password=your_password
 ```
+
 
 ### Environment Variables
 
